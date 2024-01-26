@@ -1,0 +1,8 @@
+.loginForm {
+    width: 450px;
+    height: 250px;
+    background-color: blueviolet;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
