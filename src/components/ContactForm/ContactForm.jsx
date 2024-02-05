@@ -1,14 +1,17 @@
 import React from 'react';
 import css from './ContactForm.module.css';
-import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/contacts/contactsSlice';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { getContacts } from 'redux/contacts/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContacts } from 'redux/contacts/operations';
+import { fetchContacts } from 'redux/contacts/operations';
+import { useEffect } from 'react';
+import { selectContacts } from 'redux/contacts/selectors';
 
 export const ContactForm = () => {
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
-  console.log(contacts);
+  useEffect(() => {
+    fetchContacts();
+  }, [dispatch]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -21,22 +24,20 @@ export const ContactForm = () => {
       alert(`${form.elements.name.value} is already in contacts`);
       return;
     }
-
     const numberInContacts = contacts.some(
-      ({ number }) => number === form.elements.number.value.toLowerCase()
+      ({ phone }) =>
+        phone.toLowerCase() === form.elements.number.value.toLowerCase()
     );
     if (numberInContacts) {
       alert(`${form.elements.number.value} is already in contacts`);
       return;
     }
-
     dispatch(
-      addContact({
+      addContacts({
         name: form.elements.name.value,
-        number: form.elements.number.value,
+        phone: form.elements.number.value,
       })
     );
-
     form.reset();
   };
   return (
@@ -49,7 +50,7 @@ export const ContactForm = () => {
         className={css.input}
         type="text"
         name="name"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
       />
@@ -61,11 +62,11 @@ export const ContactForm = () => {
         className={css.input}
         type="tel"
         name="number"
-        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
       />
-      <button className={css.button} type="submit">
+      <button className={css.button} type="submit" onSubmit={handleSubmit}>
         Add contacts
       </button>
     </form>

@@ -13,19 +13,26 @@ import {
     REGISTER,
 } from 'redux-persist'
 
-const persistConfig = {
-    key: 'contacts2',
+// const contactsConfig = {
+//     key: 'contacts2',
+//     storage,
+//     whitelist: ['contacts'],
+// }
+
+const authConfig = {
+    key: 'auth',
     storage,
-    whitelist: ['contacts'],
+    whitelist: ['token'],
 }
 
-export const persistedContactsReducer = persistReducer(persistConfig, contactsReducer);
+// export const persistedContactsReducer = persistReducer(contactsConfig, contactsReducer);
+export const persistedAuthReducer = persistReducer(authConfig, authReducer);
 
 export const store = configureStore({
     reducer: {
-        contacts: persistedContactsReducer,
+        contacts: contactsReducer,
         filter: filterReducer,
-        auth: authReducer,
+        auth: persistedAuthReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

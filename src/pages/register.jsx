@@ -1,17 +1,37 @@
-import css from './register.module.css';
+import * as React from 'react';
+import { NavLink } from 'react-router-dom';
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+  createTheme,
+  ThemeProvider,
+} from '@mui/material';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+
+import {
+  useDispatch,
+  // useSelector
+} from 'react-redux';
 import { register } from 'redux/auth/operations';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectUser } from 'redux/auth/selectors';
+// import { selectUserName } from 'redux/auth/selectors';
+// import { useNavigate } from 'react-router-dom';
+
+const defaultTheme = createTheme();
 
 export const Register = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isSelectUser = useSelector(selectUser);
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.target;
+  // const isSelectUserName = useSelector(selectUserName);
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    const form = event.target;
     dispatch(
       register({
         name: form.elements.name.value,
@@ -19,20 +39,84 @@ export const Register = () => {
         email: form.elements.email.value,
       })
     );
-    if (isSelectUser) {
-      navigate('/contacts');
-    }
     form.reset();
   };
+
   return (
-    <form className={css.registerForm} onSubmit={handleSubmit}>
-      <label htmlFor="name">name</label>
-      <input name="name" id="name" type="text" />
-      <label htmlFor="password">password</label>
-      <input name="password" id="password" type="text" />
-      <label htmlFor="email">email</label>
-      <input name="email" id="email" type="text" />
-      <button type="Submit">Submit</button>
-    </form>
+    <ThemeProvider theme={defaultTheme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Register
+          </Typography>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="Name"
+              name="name"
+              autoComplete="name"
+              autoFocus
+              placeholder="Ivan Petrovych"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              placeholder="**********"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="email"
+              label="Email Address"
+              type="email"
+              id="email"
+              autoComplete="email"
+              placeholder="Ivan.Petrovych@gmail.com"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Register
+            </Button>
+            <Grid container>
+              <Grid item>
+                <NavLink to="/login" variant="body2">
+                  {' Already have an account? Sign in'}
+                </NavLink>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 };

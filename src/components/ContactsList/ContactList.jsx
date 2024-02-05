@@ -1,18 +1,23 @@
 import React from 'react';
 import css from './ContactsList.module.css';
-import { deleteContact } from '../../redux/contacts/contactsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/contacts/selectors';
-import { getFilter } from 'redux/filter/selectors';
+import {
+  selectContacts,
+  selectFilter,
+  selectVisibleContacts,
+} from 'redux/contacts/selectors';
+import { useEffect } from 'react';
+import { fetchContacts, deleteContacts } from 'redux/contacts/operations';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+  const contacts = useSelector(selectContacts);
   console.log(contacts);
-  const filter = useSelector(getFilter);
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  const filter = useSelector(selectFilter);
+  const filteredContact = useSelector(selectVisibleContacts);
   const isFilterUsed = filter.trim() !== '';
 
   return (
@@ -27,30 +32,30 @@ export const ContactList = () => {
         </thead>
         <tbody>
           {isFilterUsed
-            ? filteredContacts.map(({ id, name, number }) => (
+            ? filteredContact.map(({ id, name, phone }) => (
                 <tr key={id}>
                   <td>{name}</td>
-                  <td>{number}</td>
+                  <td>{phone}</td>
                   <td>
                     <button
                       className={css.delete_btn}
                       value={id}
-                      onClick={() => dispatch(deleteContact(id))}
+                      onClick={() => dispatch(deleteContacts(id))}
                     >
                       Delete
                     </button>
                   </td>
                 </tr>
               ))
-            : contacts.map(({ id, name, number }) => (
+            : contacts.map(({ id, name, phone }) => (
                 <tr key={id}>
                   <td>{name}</td>
-                  <td>{number}</td>
+                  <td>{phone}</td>
                   <td>
                     <button
                       className={css.delete_btn}
                       value={id}
-                      onClick={() => dispatch(deleteContact(id))}
+                      onClick={() => dispatch(deleteContacts(id))}
                     >
                       Delete
                     </button>

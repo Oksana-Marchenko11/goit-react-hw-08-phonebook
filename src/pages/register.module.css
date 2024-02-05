@@ -1,7 +1,7 @@
 .registerForm {
     width: 450px;
     height: 250px;
-    background-color: blueviolet;
+    background-color: rgb(103, 156, 236);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
