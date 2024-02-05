@@ -32,10 +32,10 @@ export const ContactList = () => {
         </thead>
         <tbody>
           {isFilterUsed
-            ? filteredContact.map(({ id, name, phone }) => (
+            ? filteredContact.map(({ id, name, number }) => (
                 <tr key={id}>
                   <td>{name}</td>
-                  <td>{phone}</td>
+                  <td>{number}</td>
                   <td>
                     <button
                       className={css.delete_btn}
@@ -47,10 +47,10 @@ export const ContactList = () => {
                   </td>
                 </tr>
               ))
-            : contacts.map(({ id, name, phone }) => (
+            : contacts.map(({ id, name, number }) => (
                 <tr key={id}>
                   <td>{name}</td>
-                  <td>{phone}</td>
+                  <td>{number}</td>
                   <td>
                     <button
                       className={css.delete_btn}
