@@ -69,7 +69,7 @@ export const ContactForm = () => {
           type="submit"
           variant="contained"
           color="primary"
-          sx={{ mt: 2 }}
+          sx={{ display: 'block', margin: '12px auto' }}
         >
           Add Contact
         </Button>
