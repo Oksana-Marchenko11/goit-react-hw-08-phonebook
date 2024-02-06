@@ -1,16 +1,15 @@
-import React from 'react';
-import css from './ContactForm.module.css';
+import React, { useEffect } from 'react';
+import { TextField, Button, Box, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContacts } from 'redux/contacts/operations';
-import { fetchContacts } from 'redux/contacts/operations';
-import { useEffect } from 'react';
+import { addContacts, fetchContacts } from 'redux/contacts/operations';
 import { selectContacts } from 'redux/contacts/selectors';
 
 export const ContactForm = () => {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    fetchContacts();
+    dispatch(fetchContacts());
   }, [dispatch]);
 
   const handleSubmit = e => {
@@ -40,35 +39,41 @@ export const ContactForm = () => {
     );
     form.reset();
   };
+
   return (
-    <form className={css.form} onSubmit={handleSubmit}>
-      <label className={css.label} htmlFor="name">
-        Name
-      </label>
-      <input
-        id="name"
-        className={css.input}
-        type="text"
-        name="name"
-        // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        required
-      />
-      <label className={css.label} htmlFor="number">
-        Number
-      </label>
-      <input
-        id="number"
-        className={css.input}
-        type="tel"
-        name="number"
-        // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-        required
-      />
-      <button className={css.button} type="submit" onSubmit={handleSubmit}>
-        Add contacts
-      </button>
-    </form>
+    <Box mx="auto" maxWidth="600px">
+      <Typography variant="h5" gutterBottom>
+        Add Contact
+      </Typography>
+      <form onSubmit={handleSubmit} noValidate>
+        <TextField
+          fullWidth
+          margin="normal"
+          required
+          id="name"
+          label="Name"
+          name="name"
+          autoComplete="name"
+          autoFocus
+        />
+        <TextField
+          fullWidth
+          margin="normal"
+          required
+          id="number"
+          label="Number"
+          name="number"
+          autoComplete="number"
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ mt: 2 }}
+        >
+          Add Contact
+        </Button>
+      </form>
+    </Box>
   );
 };

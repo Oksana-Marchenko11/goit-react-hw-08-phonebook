@@ -10,6 +10,8 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import IconButton from '@mui/material/IconButton';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 export const UserMenu = () => {
   const navigate = useNavigate();
@@ -32,31 +34,19 @@ export const UserMenu = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   return (
-    // <Box sx={{ flexGrow: 1 }}>
-    //   <Toolbar>
-    //     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-    //       {userEmail}
-    //     </Typography>
-    //     <Button color="inherit" onClick={handleLogout} disabled={isLoading}>
-    //       Logout
-    //     </Button>
-    //   </Toolbar>
-    // </Box>
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 1 }}
+        <IconButton
           onClick={handleOpenUserMenu}
-          // sx={{ p: 0 }}
+          sx={{ p: 0, ml: -10, color: 'white' }}
         >
-          {userEmail}
-        </Typography>
+          <AccountCircle sx={{ fontSize: '2rem' }} />
+        </IconButton>
       </Tooltip>
       <Menu
-        sx={{ mt: '45px' }}
+        sx={{ mt: '70px' }}
         id="menu-appbar"
         anchorEl={anchorElUser}
         anchorOrigin={{
@@ -66,13 +56,16 @@ export const UserMenu = () => {
         keepMounted
         transformOrigin={{
           vertical: 'top',
-          horizontal: 'right',
+          horizontal: 'left',
         }}
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
+        <Typography sx={{ p: '8px' }} textAlign="center">
+          {userEmail}
+        </Typography>
         <MenuItem onClick={handleLogout} disabled={isLoading}>
-          <Typography textAlign="center">Logout</Typography>
+          <Typography ptextAlign="center">Logout</Typography>
         </MenuItem>
       </Menu>
     </Box>

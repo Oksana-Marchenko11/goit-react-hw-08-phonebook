@@ -1,9 +1,10 @@
 import React from 'react';
 import { Layout } from './Layout/Layout';
-import { Contacts } from 'pages/contacts';
-import { Register } from 'pages/register';
+import ContactsPage from 'pages/СontactsPage';
+import RegisterPage from 'pages/RegisterPage';
 import { Route, Routes } from 'react-router-dom';
-import { Login } from 'pages/login';
+import LoginPage from 'pages/LoginPage';
+import HomePage from 'pages/HomePage';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { refreshUser } from '../redux/auth/operations';
@@ -18,11 +19,12 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
         <Route
           path="contacts"
           element={
             <PrivateRoute>
-              <Contacts />
+              <ContactsPage />
             </PrivateRoute>
           }
         />
@@ -30,7 +32,7 @@ export const App = () => {
           path="register"
           element={
             <RestrictedRoute>
-              <Register />
+              <RegisterPage />
             </RestrictedRoute>
           }
         />
@@ -38,7 +40,7 @@ export const App = () => {
           path="login"
           element={
             <RestrictedRoute>
-              <Login />
+              <LoginPage />
             </RestrictedRoute>
           }
         />
