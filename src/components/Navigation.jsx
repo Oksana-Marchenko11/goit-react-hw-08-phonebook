@@ -7,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { MenuItem, Typography, styled } from '@mui/material';
 import AdbIcon from '@mui/icons-material/Adb';
 
-import { UserMenu } from '../UserMenu/UserMenu';
+import { UserMenu } from './UserMenu';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/selectors';

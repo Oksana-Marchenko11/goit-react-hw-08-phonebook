@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField, Box, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { setFilter } from '../../redux/filter/filterSlice';
+import { setFilter } from '../redux/filter/filterSlice';
 
 export function Filter() {
   const dispatch = useDispatch();

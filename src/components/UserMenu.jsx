@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectUser, selectIsLoading } from '../../redux/auth/selectors';
+import { selectUser, selectIsLoading } from '../redux/auth/selectors';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 import { useNavigate } from 'react-router-dom';

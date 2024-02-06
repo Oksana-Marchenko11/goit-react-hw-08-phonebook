@@ -9,16 +9,14 @@ import {
   ThemeProvider,
 } from '@mui/material';
 import { Outlet } from 'react-router-dom';
-
 // import { useSelector } from 'react-redux';
 // import { selectIsLoggedIn } from 'redux/auth/selectors';
-import { Navigation } from '../Navigation/Navigation';
+import { Navigation } from './Navigation';
 
 const defaultTheme = createTheme();
 
 export const Layout = () => {
   // const isUserLoggedIn = useSelector(selectIsLoggedIn);
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
