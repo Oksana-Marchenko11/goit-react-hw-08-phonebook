@@ -30,7 +30,7 @@ const LoginPage = () => {
       password,
     };
     dispatch(logIn(formData));
-    if (loginError) {
+    if (loginError !== false) {
       alert('Відхилено. Перевірте правильність введеного логіну та паролю!');
     } else {
       form.reset();
