@@ -1,5 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { register, logIn, logOut, refreshUser } from './operations';
+import { Check, Place } from '@mui/icons-material';
 
 const initialState = {
     isLoading: false,
@@ -56,18 +57,6 @@ const authSlice = createSlice({
                     state.error = action.payload;
                 }
             )
-
-        // .addCase(refreshUser.pending, state => {
-        //     state.isRefreshing = true;
-        // })
-        // .addCase(refreshUser.fulfilled, (state, action) => {
-        //     state.user = action.payload;
-        //     state.isLoggedIn = true;
-        //     state.isRefreshing = false;
-        //     })
-        // // .addCase(refreshUser.rejected, state => {
-        //     state.isRefreshing = false;
-        // });
     },
 });
 

@@ -10,23 +10,31 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../redux/auth/operations';
 import { NavLink } from 'react-router-dom';
+import { selectAuthError } from '../redux/auth/selectors';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const loginError = useSelector(selectAuthError);
 
   const handleSubmit = event => {
     event.preventDefault();
-    const email = event.target.elements.email.value;
-    const password = event.target.elements.password.value;
+    const form = event.target;
+    const email = form.elements.email.value;
+    const password = form.elements.password.value;
 
     const formData = {
       email,
       password,
     };
     dispatch(logIn(formData));
+    if (loginError) {
+      alert('Відхилено. Перевірте правильність введеного логіну та паролю!');
+    } else {
+      form.reset();
+    }
   };
 
   return (

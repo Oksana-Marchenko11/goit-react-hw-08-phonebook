@@ -32,7 +32,13 @@ export const Layout = () => {
         <AppBar position="static" sx={{ mt: '100px' }}>
           <Box component="footer" sx={{ py: 3, mt: 'auto' }}>
             <Typography variant="body2" color="text.secondary" align="center">
-              Copyright
+              Contact us.
+            </Typography>
+            <Typography variant="body2" color="text.secondary" align="center">
+              Email: example@email.com
+            </Typography>
+            <Typography variant="body2" color="text.secondary" align="center">
+              Phone: +987654321
             </Typography>
           </Box>
         </AppBar>
