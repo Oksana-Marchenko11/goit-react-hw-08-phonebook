@@ -1,6 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { register, logIn, logOut, refreshUser } from './operations';
-import { Check, Place } from '@mui/icons-material';
 
 const initialState = {
     isLoading: false,
