@@ -58,7 +58,8 @@ const authSlice = createSlice({
                 }
             )
             .addMatcher(
-                isAnyOf(register.rejected, logIn.rejected, refreshUser.rejected, logOut.rejected),
+                isAnyOf(register.rejected, logIn.rejected, logOut.rejected),
+                // isAnyOf(register.rejected, logIn.rejected, refreshUser.rejected, logOut.rejected),
                 (state, action) => {
                     state.isLoading = false;
                     state.error = action.payload;
