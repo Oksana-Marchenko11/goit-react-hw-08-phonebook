@@ -13,8 +13,8 @@ import Container from '@mui/material/Container';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../redux/auth/operations';
 import { NavLink } from 'react-router-dom';
-import { selectAuthError, selectNewAuthError } from '../redux/auth/selectors';
-import { useEffect, useState } from 'react';
+import { selectNewAuthError } from '../redux/auth/selectors';
+import { useEffect } from 'react';
 import { resetAuthError } from 'redux/auth/authSlice';
 
 const LoginPage = () => {
