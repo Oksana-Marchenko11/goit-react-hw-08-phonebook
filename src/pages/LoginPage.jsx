@@ -18,8 +18,6 @@ import { useEffect, useState } from 'react';
 import { resetAuthError } from 'redux/auth/authSlice';
 
 const LoginPage = () => {
-  const [showAlert, setShowAlert] = useState(false);
-  const isLoginError = useSelector(selectAuthError);
   const isNewLoginError = useSelector(selectNewAuthError);
   const dispatch = useDispatch();
 
