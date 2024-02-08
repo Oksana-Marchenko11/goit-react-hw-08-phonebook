@@ -44,6 +44,7 @@ export const register = createAsyncThunk('auth/register', async (formData, thunk
         return data;
     }
     catch (error) {
+        alert('ooooooooooooooo')
         return thunkAPI.rejectWithValue(error.message);
     }
 });

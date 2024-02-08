@@ -13,11 +13,22 @@ import Container from '@mui/material/Container';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../redux/auth/operations';
 import { NavLink } from 'react-router-dom';
-import { selectAuthError } from '../redux/auth/selectors';
+import { selectAuthError, selectNewAuthError } from '../redux/auth/selectors';
+import { useEffect, useState } from 'react';
+import { resetAuthError } from 'redux/auth/authSlice';
 
 const LoginPage = () => {
+  const [showAlert, setShowAlert] = useState(false);
+  const isLoginError = useSelector(selectAuthError);
+  const isNewLoginError = useSelector(selectNewAuthError);
   const dispatch = useDispatch();
-  const loginError = useSelector(selectAuthError);
+
+  useEffect(() => {
+    if (isNewLoginError === true) {
+      alert('Відхилено. Перевірте правильність введеного логіну та паролю!');
+      dispatch(resetAuthError());
+    }
+  });
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -30,11 +41,6 @@ const LoginPage = () => {
       password,
     };
     dispatch(logIn(formData));
-    if (loginError !== false) {
-      alert('Відхилено. Перевірте правильність введеного логіну та паролю!');
-    } else {
-      form.reset();
-    }
   };
 
   return (

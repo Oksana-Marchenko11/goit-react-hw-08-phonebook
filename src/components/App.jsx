@@ -5,6 +5,7 @@ import RegisterPage from 'pages/RegisterPage';
 import { Route, Routes } from 'react-router-dom';
 import LoginPage from 'pages/LoginPage';
 import HomePage from 'pages/HomePage';
+import NotFound from 'pages/NotFound';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { refreshUser } from '../redux/auth/operations';
@@ -45,6 +46,7 @@ export const App = () => {
           }
         />
       </Route>
+      <Route path="*" element={<NotFound />}></Route>
     </Routes>
   );
 };

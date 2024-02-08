@@ -8,11 +8,19 @@ const initialState = {
     token: null,
     isRefreshing: false,
     error: false,
+    wrongAuth: false,
 };
 
 const authSlice = createSlice({
     name: 'auth',
     initialState,
+    reducers: {
+        resetAuthError: {
+            reducer(state) {
+                state.wrongAuth = false;
+            }
+        }
+    },
     extraReducers: builder => {
         builder
             .addCase(register.fulfilled, (state, action) => {
@@ -54,9 +62,10 @@ const authSlice = createSlice({
                 (state, action) => {
                     state.isLoading = false;
                     state.error = action.payload;
+                    state.wrongAuth = true;
                 }
             )
     },
 });
-
+export const { resetAuthError } = authSlice.actions;
 export const authReducer = authSlice.reducer;
