@@ -65,7 +65,7 @@ export const UserMenu = () => {
           {userEmail}
         </Typography>
         <MenuItem onClick={handleLogout} disabled={isLoading}>
-          <Typography ptextAlign="center">Logout</Typography>
+          Logout
         </MenuItem>
       </Menu>
     </Box>

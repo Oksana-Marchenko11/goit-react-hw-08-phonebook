@@ -89,7 +89,7 @@ export const Navigation = () => {
             display: { xs: 'block', md: 'none' },
           }}
         >
-          <CustomMenuItem to="/">Home</CustomMenuItem>
+          <CustomMenuItem to="/">Home</CustomMenuItem>,
           {isLoggendIn ? (
             <CustomMenuItem to="/contacts">Contacts</CustomMenuItem>
           ) : (

@@ -12,18 +12,11 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
-import {
-  useDispatch,
-  // useSelector
-} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
-// import { selectUserName } from 'redux/auth/selectors';
-// import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const isSelectUserName = useSelector(selectUserName);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -35,7 +28,6 @@ const RegisterPage = () => {
         email: form.elements.email.value,
       })
     );
-    form.reset();
   };
 
   return (
