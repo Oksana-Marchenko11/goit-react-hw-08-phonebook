@@ -1,14 +1,15 @@
 {
   "files": {
     "main.css": "/goit-react-hw-08-phonebook/static/css/main.b5320759.css",
-    "main.js": "/goit-react-hw-08-phonebook/static/js/main.93a8ff97.js",
+    "main.js": "/goit-react-hw-08-phonebook/static/js/main.7a765f29.js",
     "static/media/pbx-phone-system.jpeg": "/goit-react-hw-08-phonebook/static/media/pbx-phone-system.11818d995f6c014997eb.jpeg",
+    "static/media/PhoneBook.jpg": "/goit-react-hw-08-phonebook/static/media/PhoneBook.32f085a594e6afa5cc65.jpg",
     "index.html": "/goit-react-hw-08-phonebook/index.html",
     "main.b5320759.css.map": "/goit-react-hw-08-phonebook/static/css/main.b5320759.css.map",
-    "main.93a8ff97.js.map": "/goit-react-hw-08-phonebook/static/js/main.93a8ff97.js.map"
+    "main.7a765f29.js.map": "/goit-react-hw-08-phonebook/static/js/main.7a765f29.js.map"
   },
   "entrypoints": [
     "static/css/main.b5320759.css",
-    "static/js/main.93a8ff97.js"
+    "static/js/main.7a765f29.js"
   ]
 }
